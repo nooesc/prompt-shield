@@ -269,7 +269,7 @@ reason = "Hex decode instruction"
 severity = "medium"
 
 [[patterns.encoding_obfuscation]]
-pattern = '\x[0-9a-fA-F]{2}(\x[0-9a-fA-F]{2}){5,}'
+pattern = '\\x[0-9a-fA-F]{2}(\\x[0-9a-fA-F]{2}){5,}'
 reason = "Hex escaped string sequence"
 severity = "medium"
 

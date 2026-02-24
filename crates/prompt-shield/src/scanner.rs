@@ -174,8 +174,7 @@ mod tests {
     fn clean_text_no_detections() {
         let config = default_config();
         let scanner = Scanner::new(&config);
-        let result =
-            scanner.scan("Hello, please help me write a sorting algorithm in Python.");
+        let result = scanner.scan("Hello, please help me write a sorting algorithm in Python.");
         assert!(!result.has_detections());
         assert_eq!(result.action, Action::Ignore);
     }

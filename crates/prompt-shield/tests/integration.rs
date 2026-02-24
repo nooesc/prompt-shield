@@ -1,4 +1,4 @@
-use prompt_shield::{default_config, parse_config, scan, Action, Category, Scanner};
+use prompt_shield::{Action, Category, Scanner, default_config, parse_config, scan};
 
 #[test]
 fn scan_clean_file() {
@@ -12,10 +12,12 @@ fn scan_instruction_override_file() {
     let text = include_str!("test_files/instruction_override.txt");
     let result = scan(text);
     assert!(result.has_detections());
-    assert!(result
-        .detections
-        .iter()
-        .any(|d| d.category == Category::ContextManipulation));
+    assert!(
+        result
+            .detections
+            .iter()
+            .any(|d| d.category == Category::ContextManipulation)
+    );
 }
 
 #[test]

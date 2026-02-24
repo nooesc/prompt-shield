@@ -1,4 +1,4 @@
-use crate::config::{parse_config, Config};
+use crate::config::{Config, parse_config};
 
 const DEFAULT_CONFIG_TOML: &str = include_str!("../../../config/default.toml");
 

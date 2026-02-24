@@ -3,9 +3,18 @@ use crate::detection::{Detection, Severity};
 pub fn format_warning(detections: &[Detection], tool_name: &str, source_info: &str) -> String {
     let separator = "=".repeat(60);
 
-    let high: Vec<_> = detections.iter().filter(|d| d.severity == Severity::High).collect();
-    let medium: Vec<_> = detections.iter().filter(|d| d.severity == Severity::Medium).collect();
-    let low: Vec<_> = detections.iter().filter(|d| d.severity == Severity::Low).collect();
+    let high: Vec<_> = detections
+        .iter()
+        .filter(|d| d.severity == Severity::High)
+        .collect();
+    let medium: Vec<_> = detections
+        .iter()
+        .filter(|d| d.severity == Severity::Medium)
+        .collect();
+    let low: Vec<_> = detections
+        .iter()
+        .filter(|d| d.severity == Severity::Low)
+        .collect();
 
     let mut lines = vec![
         separator.clone(),
@@ -62,15 +71,13 @@ mod tests {
 
     #[test]
     fn formats_warning_with_high_severity() {
-        let detections = vec![
-            Detection {
-                category: Category::InstructionOverride,
-                severity: Severity::High,
-                reason: "Attempts to ignore previous instructions".to_string(),
-                matched_text: "ignore previous instructions".to_string(),
-                offset: 0,
-            },
-        ];
+        let detections = vec![Detection {
+            category: Category::InstructionOverride,
+            severity: Severity::High,
+            reason: "Attempts to ignore previous instructions".to_string(),
+            matched_text: "ignore previous instructions".to_string(),
+            offset: 0,
+        }];
         let warning = format_warning(&detections, "Read", "/path/to/file.md");
         assert!(warning.contains("PROMPT INJECTION WARNING"));
         assert!(warning.contains("HIGH SEVERITY"));

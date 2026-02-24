@@ -1,7 +1,7 @@
 use serde::Deserialize;
 
-use crate::detection::{Action, Severity};
 use crate::Category;
+use crate::detection::{Action, Severity};
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Config {

@@ -143,7 +143,10 @@ mod tests {
 
     #[test]
     fn category_display() {
-        assert_eq!(Category::InstructionOverride.as_str(), "Instruction Override");
+        assert_eq!(
+            Category::InstructionOverride.as_str(),
+            "Instruction Override"
+        );
         assert_eq!(Category::RolePlayingDan.as_str(), "Role-Playing/DAN");
     }
 

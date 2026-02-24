@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 
-use prompt_shield::{default_config, parse_config, Scanner};
+use prompt_shield::{Scanner, default_config, parse_config};
 
 #[wasm_bindgen(js_name = scan)]
 pub fn scan_with_default(text: &str) -> JsValue {

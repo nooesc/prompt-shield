@@ -3,9 +3,11 @@ use std::io::{self, Read};
 use std::process;
 
 use clap::{Parser, Subcommand};
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 
-use prompt_shield::{default_config, parse_config, report::format_warning, Action, Config, Scanner};
+use prompt_shield::{
+    Action, Config, Scanner, default_config, parse_config, report::format_warning,
+};
 
 #[derive(Parser)]
 #[command(name = "prompt-shield", about = "Fast prompt injection detection")]
