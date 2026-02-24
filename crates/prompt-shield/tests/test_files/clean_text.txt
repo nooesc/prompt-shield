@@ -1,0 +1,8 @@
+# My Project
+
+A simple Rust library for processing data.
+
+## Usage
+
+Add this to your Cargo.toml and start using it.
+The API is straightforward and well-documented.
