@@ -87,6 +87,14 @@ jobs:
           name: prompt-shield-wasm
           path: prompt-shield-wasm.tar.gz
 
+      - name: Publish to npm
+        working-directory: crates/prompt-shield-wasm/pkg
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > .npmrc
+          npm publish --access public
+
   release:
     name: Create release
     needs: [build, wasm]
