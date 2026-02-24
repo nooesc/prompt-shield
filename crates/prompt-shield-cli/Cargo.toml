@@ -1,0 +1,13 @@
+[package]
+name = "prompt-shield-cli"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "prompt-shield"
+path = "src/main.rs"
+
+[dependencies]
+prompt-shield = { path = "../prompt-shield" }
+clap = { version = "4", features = ["derive"] }
+serde_json = "1"

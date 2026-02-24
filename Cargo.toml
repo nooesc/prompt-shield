@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/prompt-shield",
+    "crates/prompt-shield-cli",
+    "crates/prompt-shield-wasm",
+]

@@ -1,0 +1,12 @@
+[package]
+name = "prompt-shield"
+version = "0.1.0"
+edition = "2024"
+description = "Fast prompt injection detection engine"
+license = "MIT"
+
+[dependencies]
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+thiserror = "2"
