@@ -1,3 +1,3 @@
-pub fn scan(_text: &str) -> bool {
-    todo!()
-}
+pub mod detection;
+
+pub use detection::{Action, Category, Detection, ScanResult, Severity};
