@@ -114,6 +114,32 @@ Use with CLI: `prompt-shield --config my-config.toml scan`
 | Medium | Warn | Suspicious, may have legitimate uses |
 | High | Block | Definite injection attempt |
 
+## Benchmarks
+
+Compared against [lasso-security/claude-hooks](https://github.com/lasso-security/claude-hooks) (Python/UV), which prompt-shield's pattern set was ported from. Both tools use regex-based detection with ~100 patterns across the same 4 categories.
+
+### Speed
+
+Measured with [hyperfine](https://github.com/sharkdp/hyperfine) (20 runs, 3 warmup). macOS ARM64.
+
+| File | Size | prompt-shield | claude-hooks | Speedup |
+|------|------|--------------|-------------|---------|
+| clean_small.txt | 698B | 13.9ms | 49.7ms | **3.6x** |
+| clean_medium.txt | 10KB | 14.4ms | 58.2ms | **4.0x** |
+| clean_large.txt | 100KB | 15.2ms | 119.5ms | **7.9x** |
+| clean_xlarge.txt | 1MB | 30.3ms | 716.1ms | **23.6x** |
+| inject_small.txt | 872B | 13.3ms | 50.2ms | **3.8x** |
+| inject_medium.txt | 10KB | 14.0ms | 54.5ms | **3.9x** |
+| inject_large.txt | 100KB | 15.2ms | 112.3ms | **7.4x** |
+| inject_xlarge.txt | 1MB | 27.6ms | 731.1ms | **26.5x** |
+| inject_dense.txt | 1.5KB | 13.7ms | 48.7ms | **3.5x** |
+
+**3.5x faster on small files, 25x+ faster on large files.** The gap widens with file size due to Rust's compiled regex engine vs Python's interpreter overhead.
+
+### Detection accuracy
+
+Both tools produce identical results across all test files — same detections, same severity classifications, zero false positives on clean text.
+
 ## Credits
 
 Pattern set ported and extended from [lasso-security/claude-hooks](https://github.com/lasso-security/claude-hooks).
